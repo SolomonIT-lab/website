@@ -32,6 +32,13 @@
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(10, 102, 194, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(0, 199, 183, 0.1) 0%, transparent 20%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        body.menu-open {
+            filter: blur(3px);
+            transform: translateX(-20%);
+            overflow: hidden;
         }
 
         a {
@@ -198,13 +205,148 @@
             margin-left: 15px;
         }
 
-        .mobile-toggle {
+        /* Mobile Menu Toggle */
+        .menu-toggle-container {
             display: none;
-            font-size: 1.5rem;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
             cursor: pointer;
-            background: transparent;
-            border: none;
+        }
+
+        .menu-toggle {
+            width: 25px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        body.menu-open .menu-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        body.menu-open .menu-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .menu-text {
             color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 16px;
+        }
+
+        /* Mobile Menu - 80% width */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -80%; /* Starts off-screen */
+            width: 80%; /* Covers 80% of the screen */
+            height: 100%;
+            background: var(--dark);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        body.menu-open .mobile-menu {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 1002;
+        }
+
+        .menu-header {
+            padding: 70px 20px 20px;
+        }
+
+        .menu-title {
+            background-color: var(--primary);
+            color: white;
+            padding: 25px 20px;
+            text-align: left;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 24px;
+        }
+
+        .menu-subtitle {
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item {
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 18px;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: 30px 20px;
+            background-color: rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--accent);
         }
 
         /* Hero Section */
@@ -691,12 +833,9 @@
         }
 
         @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            
             .nav-menu {
-                position: fixed;
+                display: none;
+            position: fixed;
                 top: 80px;
                 right: -100%;
                 flex-direction: column;
@@ -716,8 +855,12 @@
                 margin: 15px 0;
             }
             
-            .hero-btns {
-                flex-direction: column;
+            .header-actions .btn {
+                display: none;
+            }
+            
+            .menu-toggle-container {
+                display: flex;
             }
             
             .hero h1 {
@@ -751,12 +894,51 @@
             <div class="header-actions">
                 <a href="#" class="btn btn-outline">Sign In</a>
                 <a href="#" class="btn btn-primary glow">Get Started</a>
-                <button class="mobile-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle-container" id="menuToggleContainer">
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-text">Menu</div>
+    </div>
+    
+    <!-- Mobile Menu - 80% width -->
+    <div class="mobile-menu" id="mobileMenu">
+        
+        
+        <div class="menu-header">
+            <div class="menu-title">
+                SolomonIT
+            </div>
+            <div class="menu-subtitle">
+                Cybersecurity Solutions
+            </div>
+        </div>
+        
+        <div class="menu-items">
+            <a href="#home" class="menu-item">Home</a>
+            <a href="#solutions" class="menu-item">Solutions</a>
+            <a href="#platform" class="menu-item">Platform</a>
+            <a href="#resources" class="menu-item">Resources</a>
+            <a href="#contact" class="menu-item">Contact</a>
+            <a href="#" class="menu-item">Sign In</a>
+            <a href="#" class="menu-item">Get Started</a>
+        </div>
+        
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
 
     <!-- Home Page -->
     <section id="home" class="page active">
@@ -855,6 +1037,7 @@
                                     <p>Automatically respond to threats within milliseconds to minimize impact.</p>
                                 </div>
                             </li>
+                            <极
                             <li class="animated-element delay-3">
                                 <i class="fas fa-chart-line"></i>
                                 <div>
@@ -876,7 +1059,7 @@
                             <rect x="50" y="50" width="400" height="300" rx="10" fill="rgba(15, 23, 42, 0.8)" stroke="url(#platformGradient)" stroke-width="2" />
                             <rect x="70" y="80" width="360" height="40" rx="5" fill="var(--darker)" />
                             <rect x="70" y="140" width="170" height="190" rx="5" fill="var(--dark)" />
-                            <rect x="260" y="140" width="170" height="90" rx="5" fill="var(--dark)" />
+                            <rect x="260" y="140" width="170" height="90" rx="5" fill="极
                             <rect x="260" y="240" width="170" height="90" rx="5" fill="var(--dark)" />
                             <circle cx="90" cy="100" r="5" fill="#00c7b7" />
                             <circle cx="110" cy="100" r="5" fill="var(--gray)" />
@@ -919,8 +1102,8 @@
                     <div class="client-logo">Centenary Bank</div>
                     <div class="client-logo">UMEME</div>
                 </div>
-            </div>
-        </section>
+            </极
+        ></section>
 
         <!-- CTA -->
         <section class="cta">
@@ -1096,7 +1279,7 @@
                     </div>
                     <h3>Webinars</h3>
                     <p>Live and recorded sessions with security experts on trending topics.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 20px; display: inline-block;">Watch Now</a>
+                    <a href="#" class="btn btn-outline" style="margin-top: 20极 display: inline-block;">Watch Now</a>
                 </div>
                 
                 <div class="feature-card">
@@ -1128,8 +1311,8 @@
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
                                 <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <h4>Cloud Security Best Practices</h4>
+                            </极
+                            ><h4>Cloud Security Best Practices</h4>
                         </div>
                         <p>Essential strategies for securing multi-cloud environments and preventing misconfigurations.</p>
                         <div style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Published: Dec 5, 2022</div>
@@ -1198,9 +1381,9 @@
                         <h4 style="margin-bottom: 15px;">Follow Us</h4>
                         <div class="footer-social">
                             <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1306,13 +1489,26 @@
 
     <script>
         // Mobile Menu Toggle
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const body = document.body;
+        const menuToggleContainer = document.getElementById('menuToggleContainer');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
         
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        function toggleMenu() {
+            body.classList.toggle('menu-open');
+        }
+        
+        // Event Listeners
+        menuToggleContainer.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on menu items
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', toggleMenu);
         });
-        
+
         // Page Navigation
         const pages = document.querySelectorAll('.page');
         const navLinks = document.querySelectorAll('.nav-menu a');
@@ -1322,9 +1518,6 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            
-            // Close mobile menu after navigation
-            navMenu.classList.remove('active');
         }
         
         navLinks.forEach(link => {
