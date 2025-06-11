@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolomonIT - Advanced Cybersecurity Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a66c2;
+            --secondary: #004182;
+            --accent: #00c7b7;
+            --dark: #0f172a;
+            --darker: #0a0f1f;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(10, 102, 194, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 199, 183, 0.1) 0%, transparent 20%);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px rgba(10, 102, 194, 0.4);
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        header {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo::after {
+            content: "IT";
+            position: absolute;
+            right: -35px;
+            top: -8px;
+            font-size: 1.2rem;
+            background: var(--accent);
+            color: var(--darker);
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            font-size: 1.05rem;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-actions .btn {
+            margin-left: 15px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(10, 102, 194, 0.1) 0%, rgba(10, 23, 42, 0) 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            z-index: 1;
+            opacity: 0.9;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+        }
+
+        /* Animated Elements */
+        .animated-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animated-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* Glowing Elements */
+        .glow {
+            position: relative;
+        }
+
+        .glow::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+            border-radius: inherit;
+            animation: glowPulse 3s infinite alternate;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 199, 183, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: height 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Platform Section */
+        .platform {
+            background: linear-gradient(to bottom, var(--dark), var(--darker));
+        }
+
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .platform-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.6s ease;
+        }
+
+        .platform-image:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        .platform-features {
+            list-style: none;
+        }
+
+        .platform-features li {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .platform-features i {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            min-width: 30px;
+            background: rgba(0, 199, 183, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .platform-features h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 3px solid var(--dark);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-role {
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+        /* Clients */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .client-logo {
+            filter: grayscale(1) brightness(2);
+            opacity: 0.7;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .cta .btn {
+            background: var(--dark);
+            color: white;
+            padding: 16px 45px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 100px 0 30px;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(10, 102, 194, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding-top: 100px;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.4; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .platform-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                transform: none;
+                margin-top: 50px;
+                right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--dark);
+                width: 80%;
+                height: calc(100vh - 80px);
+                padding: 40px 20px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+
+            .section-header h2 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">Solomon<span>IT</span></a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#platform">Platform</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary glow">Get Started</a>
+                <button class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animated-element">Advanced Cybersecurity Solutions</h1>
+                    <p class="animated-element delay-1">SolomonIT provides cutting-edge security solutions to protect your digital assets from evolving threats with AI-powered technology and expert insights.</p>
+                    <div class="hero-btns">
+                        <a href="#solutions" class="btn btn-primary glow animated-element delay-2">Explore Solutions</a>
+                        <a href="#contact" class="btn btn-outline animated-element delay-3">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image animated-element delay-4">
+                <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0a66c2" />
+                            <stop offset="100%" stop-color="#00c7b7" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path fill="url(#gradient)" d="M43.8,-52.7C56.9,-43.1,67.5,-28.2,70.3,-11.5C73.1,5.2,68.1,23.7,58.3,37.4C48.5,51.1,33.9,60.1,18.1,65.1C2.3,70.1,-14.6,71.2,-29.7,65.9C-44.8,60.6,-58.1,48.8,-64.2,34.2C-70.3,19.6,-69.2,2.1,-65.4,-14.7C-61.6,-31.6,-55,-47.8,-44.1,-57.8C-33.2,-67.8,-18.1,-71.5,-0.6,-70.9C16.9,-70.2,33.8,-65.2,43.8,-52.7Z" transform="translate(250 200)" filter="url(#glow)" />
+                    <circle cx="250" cy="200" r="100" fill="none" stroke="#00c7b7" stroke-width="2" stroke-dasharray="8 8" opacity="0.7" />
+                    <rect x="200" y="150" width="100" height="100" fill="none" stroke="#0a66c2" stroke-width="2" opacity="0.7" />
+                    <path d="M200,150 L300,250 M300,150 L200,250" stroke="#0a66c2" stroke-width="2" opacity="0.7" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <section>
+            <div class="container">
+                <div class="section-header animated-element">
+                    <h2>Comprehensive Security Solutions</h2>
+                    <p>Our platform integrates seamlessly with your existing infrastructure to provide end-to-end protection across all attack vectors.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card animated-element delay-1">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Threat Prevention</h3>
+                        <p>Proactively identify and neutralize threats before they impact your business with AI-driven detection systems.</p>
+                    </div>
+                    
+                    <div class="feature-card animated-element delay-2">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Data Protection</h3>
+                        <p>Encrypt sensitive information and prevent data breaches with our advanced encryption and access control systems.</p>
+                    </div>
+                    
+                    <div class="feature-card animated-element delay-3">
+                        <div class="feature-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3>Network Security</h3>
+                        <p>Secure your network perimeter and internal communications with our next-generation firewall technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Section -->
+        <section class="platform">
+            <div class="container">
+                <div class="platform-content">
+                    <div>
+                        <div class="section-header animated-element" style="text-align: left; margin: 0 0 40px;">
+                            <h2>Unified Security Platform</h2>
+                            <p>Our integrated platform provides complete visibility and control over your security posture.</p>
+                        </div>
+                        
+                        <ul class="platform-features">
+                            <li class="animated-element delay-1">
+                                <i class="fas fa-brain"></i>
+                                <div>
+                                    <h4>AI-Powered Threat Detection</h4>
+                                    <p>Machine learning algorithms analyze patterns to identify zero-day threats.</p>
+                                </div>
+                            </li>
+                            <li class="animated-element delay-2">
+                                <i class="fas fa-sync-alt"></i>
+                                <div>
+                                    <h4>Real-Time Response</h4>
+                                    <p>Automatically respond to threats within milliseconds to minimize impact.</p>
+                                </div>
+                            </li>
+                            <li class="animated-element delay-3">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <h4>Compliance Dashboard</h4>
+                                    <p>Monitor and maintain compliance with industry regulations effortlessly.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="platform-image animated-element delay-4">
+                        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="platformGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0a66c2" />
+                                    <stop offset="100%" stop-color="#00c7b7" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="50" y="50" width="400" height="300" rx="10" fill="rgba(15, 23, 42, 0.8)" stroke="url(#platformGradient)" stroke-width="2" />
+                            <rect x="70" y="80" width="360" height="40" rx="5" fill="var(--darker)" />
+                            <rect x="70" y="140" width="170" height="190" rx="5" fill="var(--dark)" />
+                            <rect x="260" y="140" width="170" height="90" rx="5" fill="var(--dark)" />
+                            <rect x="260" y="240" width="170" height="90" rx="5" fill="var(--dark)" />
+                            <circle cx="90" cy="100" r="5" fill="#00c7b7" />
+                            <circle cx="110" cy="100" r="5" fill="var(--gray)" />
+                            <circle cx="130" cy="100" r="5" fill="var(--gray)" />
+                            <text x="360" y="105" fill="var(--light)" font-family="Arial" font-size="14">Dashboard</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Trusted by Industry Leaders</h2>
+                    <p>Organizations worldwide rely on SolomonIT to protect their critical assets.</p>
+                </div>
+                
+                <div class="testimonials-container">
+                    <div class="testimonial">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p>"SolomonIT's platform has transformed our security operations. The AI-driven threat detection has reduced false positives by 80% and helped us identify critical vulnerabilities before they were exploited."</p>
+                        <div class="testimonial-author">Sarah Johnson</div>
+                        <div class="testimonial-role">CTO, TechGlobal Inc.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients -->
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div class="clients-grid">
+                    <div class="client-logo">MTN Uganda</div>
+                    <div class="client-logo">Airtel</div>
+                    <div class="client-logo">NSSF</div>
+                    <div class="client-logo">Centenary Bank</div>
+                    <div class="client-logo">UMEME</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Secure Your Business?</h2>
+                <p>Join thousands of companies that trust SolomonIT for their cybersecurity needs.</p>
+                <a href="#" class="btn">Start Free Trial</a>
+            </div>
+        </section>
+    </section>
+
+    <!-- Solutions Page -->
+    <section id="solutions" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2>Security Solutions</h2>
+                <p>Comprehensive protection tailored to your business needs</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Security</h3>
+                    <p>Protect your cloud infrastructure with advanced threat detection, compliance monitoring, and data encryption across all major platforms.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Endpoint Protection</h3>
+                    <p>Secure all devices in your network with next-gen antivirus, device control, and vulnerability assessment.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Identity & Access</h3>
+                    <p>Implement zero-trust security with multi-factor authentication, privileged access management, and identity governance.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Application Security</h3>
+                    <p>Protect your applications from vulnerabilities with SAST, DAST, and SCA integrated into your SDLC.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Security</h3>
+                    <p>Discover, classify, and protect sensitive data across your organization with automated data loss prevention.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Defense</h3>
+                    <p>Detect and block network threats with next-generation firewalls, intrusion prevention, and encrypted traffic inspection.</p>
+                    <a href="#" style="display: inline-block; margin-top: 15px; color: var(--accent);">Learn more →</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#contact" class="btn btn-primary">Request a Custom Solution</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Page -->
+    <section id="platform" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2>SolomonIT Security Platform</h2>
+                <p>A unified approach to enterprise security</p>
+            </div>
+            
+            <div class="platform-content">
+                <div class="platform-image">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="50" width="400" height="300" rx="10" fill="rgba(15, 23, 42, 0.8)" stroke="#0a66c2" stroke-width="2" />
+                        <rect x="70" y="80" width="360" height="40" rx="5" fill="var(--darker)" />
+                        <rect x="70" y="140" width="170" height="190" rx="5" fill="var(--dark)" />
+                        <rect x="260" y="140" width="170" height="90" rx="5" fill="var(--dark)" />
+                        <rect x="260" y="240" width="170" height="90" rx="5" fill="var(--dark)" />
+                        <circle cx="90" cy="100" r="5" fill="#00c7b7" />
+                        <circle cx="110" cy="100" r="5" fill="var(--gray)" />
+                        <circle cx="130" cy="100" r="5" fill="var(--gray)" />
+                        <text x="360" y="105" fill="var(--light)" font-family="Arial" font-size="14">Platform Dashboard</text>
+                        <text x="150" y="170" fill="#00c7b7" font-family="Arial" font-size="12">Threat Intelligence</text>
+                        <text x="340" y="170" fill="#00c7b7" font-family="Arial" font-size="12">Analytics</text>
+                        <text x="340" y="270" fill="#00c7b7" font-family="Arial" font-size="12">Automation</text>
+                    </svg>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Integrated Security Ecosystem</h3>
+                    <p style="margin-bottom: 30px; color: var(--gray);">Our platform brings together all aspects of cybersecurity into a single, cohesive system that provides comprehensive protection and unmatched visibility.</p>
+                    
+                    <ul class="platform-features">
+                        <li>
+                            <i class="fas fa-cogs"></i>
+                            <div>
+                                <h4>Centralized Management</h4>
+                                <p>Control all security functions from a single dashboard with unified policies and reporting.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-robot"></i>
+                            <div>
+                                <h4>AI-Powered Analytics</h4>
+                                <p>Leverage machine learning to detect anomalies and predict potential threats.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <h4>Automated Response</h4>
+                                <p>Reduce response times with automated playbooks and orchestrated workflows.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            <div>
+                                <h4>Scalable Architecture</h4>
+                                <p>Easily scale to protect growing businesses without compromising performance.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="#" class="btn btn-primary" style="margin-right: 15px;">Platform Demo</a>
+                        <a href="#resources" class="btn btn-outline">Technical Documentation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Page -->
+    <section id="resources" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2>Security Resources</h2>
+                <p>Knowledge and tools to strengthen your security posture</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div style="height: 200px; background: var(--dark); border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--accent);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Whitepapers</h3>
+                    <p>In-depth research on the latest security threats and defense strategies.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 20px; display: inline-block;">Download</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div style="height: 200px; background: var(--dark); border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--accent);">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Webinars</h3>
+                    <p>Live and recorded sessions with security experts on trending topics.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 20px; display: inline-block;">Watch Now</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div style="height: 200px; background: var(--dark); border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--accent);">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <h3>Blog</h3>
+                    <p>Insights, analysis, and best practices from our security researchers.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 20px; display: inline-block;">Read Articles</a>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 40px;">Latest Security Reports</h3>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h4>2023 Threat Landscape Report</h4>
+                        </div>
+                        <p>Comprehensive analysis of emerging threats and attack patterns from the past year.</p>
+                        <div style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Published: Jan 15, 2023</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h4>Cloud Security Best Practices</h4>
+                        </div>
+                        <p>Essential strategies for securing multi-cloud environments and preventing misconfigurations.</p>
+                        <div style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Published: Dec 5, 2022</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h4>Zero Trust Implementation Guide</h4>
+                        </div>
+                        <p>Step-by-step guide to implementing a zero-trust security model in your organization.</p>
+                        <div style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Published: Nov 20, 2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Reach out to our team for inquiries, demos, or support</p>
+            </div>
+            
+            <div class="platform-content">
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Get in Touch</h3>
+                    <p style="margin-bottom: 30px; color: var(--gray);">Our team is ready to answer your questions and help you find the right security solutions for your business.</p>
+                    
+                    <div class="platform-features">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Headquarters</h4>
+                                <p>123 Kampala Road<br>Kampala, Uganda</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+256 784 497809</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>solomon@solomonIT.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Support Hours</h4>
+                                <p>24/7/365</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <h4 style="margin-bottom: 15px;">Follow Us</h4>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <form action="https://formsubmit.co/wanumet@gmail.com" method="POST" style="background: rgba(15, 23, 42, 0.6); border-radius: 10px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="#contact">
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Name</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 12px; background: var(--darker); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white;">
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 12px; background: var(--darker); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white;">
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Company</label>
+                            <input type="text" name="company" style="width: 100%; padding: 12px; background: var(--darker); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white;">
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Interested In</label>
+                            <select name="interest" style="width: 100%; padding: 12px; background: var(--darker); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white;">
+                                <option>Product Demo</option>
+                                <option>Sales Inquiry</option>
+                                <option>Technical Support</option>
+                                <option>Partnership</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message</label>
+                            <textarea name="message" required style="width: 100%; height: 120px; padding: 12px; background: var(--darker); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: white;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">Solomon<span>IT</span></div>
+                    <p style="color: var(--gray); margin-bottom: 20px;">Advanced cybersecurity solutions for the modern enterprise.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cloud Security</a></li>
+                        <li><a href="#">Endpoint Protection</a></li>
+                        <li><a href="#">Identity & Access</a></li>
+                        <li><a href="#">Application Security</a></li>
+                        <li><a href="#">Data Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SolomonIT Security Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Page Navigation
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu after navigation
+            navMenu.classList.remove('active');
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('href').substring(1);
+                showPage(targetPage);
+                
+                // Scroll to top of page
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    if (targetId) {
+                        showPage(targetId);
+                        window.scrollTo(0, 0);
+                    }
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        document.querySelectorAll('.animated-element').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Form submission handling
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Send form data
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Message sent successfully! We will contact you soon.');
+                        this.reset();
+                    } else {
+                        alert('There was an error sending your message. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    alert('There was an error sending your message. Please try again.');
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = 'Send Message';
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
